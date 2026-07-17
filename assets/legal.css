@@ -1,0 +1,220 @@
+:root {
+  --paper: #EEF1F7;
+  --paper-card: #FFFFFF;
+  --ink: #12162B;
+  --ink-soft: #4A5170;
+  --navy: #0A1232;
+  --navy-deep: #060A1C;
+  --gold: #C9932B;
+  --gold-bg: #F7C948;
+  --blue: #2B6FE0;
+  --violet: #6E42E0;
+  --border: #D8DEEA;
+  --shadow: 0 1px 2px rgba(10, 18, 50, 0.04), 0 8px 24px rgba(10, 18, 50, 0.06);
+}
+:root[data-theme="dark"] {
+  --paper: #0A1232;
+  --paper-card: #121A3B;
+  --ink: #E8EAF6;
+  --ink-soft: #A7AFCC;
+  --navy: #060A1C;
+  --navy-deep: #040714;
+  --gold: #F7C948;
+  --gold-bg: #F7C948;
+  --blue: #7CB0FF;
+  --violet: #B79CFF;
+  --border: #262F55;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0A1232;
+    --paper-card: #121A3B;
+    --ink: #E8EAF6;
+    --ink-soft: #A7AFCC;
+    --navy: #060A1C;
+    --navy-deep: #040714;
+    --gold: #F7C948;
+    --gold-bg: #F7C948;
+    --blue: #7CB0FF;
+    --violet: #B79CFF;
+    --border: #262F55;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 28px rgba(0, 0, 0, 0.35);
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.65;
+}
+a { color: var(--blue); text-decoration-color: color-mix(in srgb, var(--blue) 40%, transparent); }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible, button:focus-visible, .pill:focus-visible {
+  outline: 2px solid var(--gold-bg); outline-offset: 2px; border-radius: 4px;
+}
+code { background: color-mix(in srgb, var(--ink) 6%, transparent); padding: 1px 6px; border-radius: 4px; font-size: 0.92em; }
+h1, h2 {
+  font-family: ui-serif, "Iowan Old Style", "Palatino Linotype", "Noto Serif", Georgia, serif;
+  text-wrap: balance;
+  color: var(--ink);
+}
+.muted { color: var(--ink-soft); }
+
+/* ---------- Header band ---------- */
+.band {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(155deg, var(--navy) 0%, var(--navy-deep) 100%);
+  padding: 30px clamp(20px, 6vw, 48px);
+}
+.band-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+.band img.mark { width: min(190px, 42vw); height: auto; display: block; flex-shrink: 0; }
+.band .titles { min-width: 0; }
+.band h1 { margin: 0 0 4px; font-size: clamp(1.5rem, 4vw, 2rem); color: #FBF6E8; line-height: 1.15; }
+.band .titles p { margin: 0; color: #B9C2E6; font-size: 0.9rem; letter-spacing: 0.02em; }
+.band .titles p strong { color: var(--gold-bg); font-weight: 700; }
+.helix-bleed {
+  position: absolute;
+  right: -6%;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 145%;
+  width: auto;
+  opacity: 0.34;
+  -webkit-mask-image: linear-gradient(to left, black 45%, transparent 92%);
+  mask-image: linear-gradient(to left, black 45%, transparent 92%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ---------- Jump nav ---------- */
+nav.jump {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--border);
+}
+nav.jump ul {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 10px clamp(20px, 6vw, 48px);
+  list-style: none;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+nav.jump a.pill {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--paper-card);
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+nav.jump a.pill:hover { color: var(--ink); border-color: var(--blue); }
+
+/* ---------- Main column ---------- */
+main { max-width: 760px; margin: 0 auto; padding: clamp(28px, 6vw, 48px); }
+.lede {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  max-width: 42em;
+}
+.lede strong { color: var(--ink); }
+
+section.record { margin-top: 2.6em; }
+.eyebrow {
+  display: block;
+  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin-bottom: 0.5em;
+}
+section.record h2 { font-size: 1.3rem; margin: 0 0 0.6em; }
+section.record p, section.record li { color: var(--ink); }
+section.record ul { padding-left: 1.15em; margin: 0.8em 0; }
+section.record li { margin-bottom: 0.55em; }
+section.record li::marker { color: var(--gold); }
+
+/* ---------- Callout card ---------- */
+.callout {
+  position: relative;
+  background: var(--paper-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 26px 26px 22px;
+  box-shadow: var(--shadow);
+  margin-top: 1.4em;
+}
+.callout img.mascot {
+  position: absolute;
+  top: -18px;
+  right: 20px;
+  width: 64px;
+  height: 64px;
+  filter: drop-shadow(0 6px 10px rgba(10,18,50,0.18));
+}
+.callout ul { padding-right: 60px; }
+
+/* ---------- Table ---------- */
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin: 1.2em 0;
+  box-shadow: var(--shadow);
+}
+table { border-collapse: collapse; width: 100%; font-size: 0.92rem; min-width: 640px; }
+th, td { padding: 10px 13px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); }
+thead th {
+  background: var(--navy);
+  color: #EDE4C2;
+  font-family: ui-serif, "Iowan Old Style", Georgia, serif;
+  font-weight: 600;
+  font-size: 0.86rem;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+tbody tr:nth-child(even) { background: color-mix(in srgb, var(--ink) 3%, transparent); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* ---------- Strand rule (DNA motif, CSS-drawn) ---------- */
+.strand-rule {
+  height: 4px;
+  border-radius: 999px;
+  margin: 3em 0 2.2em;
+  background: linear-gradient(90deg, var(--blue), var(--violet), var(--gold-bg));
+  opacity: 0.75;
+}
+
+footer { padding-bottom: 8px; }
+footer address { font-style: normal; color: var(--ink-soft); line-height: 1.7; }
+footer .see-also { margin-top: 1.6em; font-size: 0.88rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
